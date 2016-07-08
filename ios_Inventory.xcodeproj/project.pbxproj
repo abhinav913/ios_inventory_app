@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		260993801D2F14D500605097 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2609937F1D2F14D500605097 /* AppDelegate.swift */; };
-		260993821D2F14D500605097 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260993811D2F14D500605097 /* FirstViewController.swift */; };
-		260993841D2F14D500605097 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260993831D2F14D500605097 /* SecondViewController.swift */; };
+		260993821D2F14D500605097 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260993811D2F14D500605097 /* HomeViewController.swift */; };
+		260993841D2F14D500605097 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260993831D2F14D500605097 /* SearchViewController.swift */; };
 		260993871D2F14D500605097 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 260993851D2F14D500605097 /* Main.storyboard */; };
 		260993891D2F14D500605097 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 260993881D2F14D500605097 /* Assets.xcassets */; };
 		2609938C1D2F14D500605097 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2609938A1D2F14D500605097 /* LaunchScreen.storyboard */; };
@@ -37,8 +37,8 @@
 /* Begin PBXFileReference section */
 		2609937C1D2F14D500605097 /* ios_Inventory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_Inventory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2609937F1D2F14D500605097 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		260993811D2F14D500605097 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		260993831D2F14D500605097 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		260993811D2F14D500605097 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		260993831D2F14D500605097 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		260993861D2F14D500605097 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		260993881D2F14D500605097 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2609938B1D2F14D500605097 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -100,8 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				2609937F1D2F14D500605097 /* AppDelegate.swift */,
-				260993811D2F14D500605097 /* FirstViewController.swift */,
-				260993831D2F14D500605097 /* SecondViewController.swift */,
+				260993811D2F14D500605097 /* HomeViewController.swift */,
+				260993831D2F14D500605097 /* SearchViewController.swift */,
 				260993851D2F14D500605097 /* Main.storyboard */,
 				260993881D2F14D500605097 /* Assets.xcassets */,
 				2609938A1D2F14D500605097 /* LaunchScreen.storyboard */,
@@ -259,9 +259,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				260993841D2F14D500605097 /* SecondViewController.swift in Sources */,
+				260993841D2F14D500605097 /* SearchViewController.swift in Sources */,
 				260993801D2F14D500605097 /* AppDelegate.swift in Sources */,
-				260993821D2F14D500605097 /* FirstViewController.swift in Sources */,
+				260993821D2F14D500605097 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +488,7 @@
 				260993A81D2F14D500605097 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		260993A91D2F14D500605097 /* Build configuration list for PBXNativeTarget "ios_InventoryTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +497,7 @@
 				260993AB1D2F14D500605097 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		260993AC1D2F14D500605097 /* Build configuration list for PBXNativeTarget "ios_InventoryUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +506,7 @@
 				260993AE1D2F14D500605097 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
