@@ -15,6 +15,7 @@
 		2609938C1D2F14D500605097 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2609938A1D2F14D500605097 /* LaunchScreen.storyboard */; };
 		260993971D2F14D500605097 /* ios_InventoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260993961D2F14D500605097 /* ios_InventoryTests.swift */; };
 		260993A21D2F14D500605097 /* ios_InventoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260993A11D2F14D500605097 /* ios_InventoryUITests.swift */; };
+		FDCA61DB1D2F20D900C7D04C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCA61DA1D2F20D900C7D04C /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		2609939D1D2F14D500605097 /* ios_InventoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ios_InventoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		260993A11D2F14D500605097 /* ios_InventoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_InventoryUITests.swift; sourceTree = "<group>"; };
 		260993A31D2F14D500605097 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FDCA61DA1D2F20D900C7D04C /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				260993881D2F14D500605097 /* Assets.xcassets */,
 				2609938A1D2F14D500605097 /* LaunchScreen.storyboard */,
 				2609938D1D2F14D500605097 /* Info.plist */,
+				FDCA61DA1D2F20D900C7D04C /* Item.swift */,
 			);
 			path = ios_Inventory;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDCA61DB1D2F20D900C7D04C /* Item.swift in Sources */,
 				260993841D2F14D500605097 /* SecondViewController.swift in Sources */,
 				260993801D2F14D500605097 /* AppDelegate.swift in Sources */,
 				260993821D2F14D500605097 /* FirstViewController.swift in Sources */,
@@ -488,6 +492,7 @@
 				260993A81D2F14D500605097 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		260993A91D2F14D500605097 /* Build configuration list for PBXNativeTarget "ios_InventoryTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +501,7 @@
 				260993AB1D2F14D500605097 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		260993AC1D2F14D500605097 /* Build configuration list for PBXNativeTarget "ios_InventoryUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +510,7 @@
 				260993AE1D2F14D500605097 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
