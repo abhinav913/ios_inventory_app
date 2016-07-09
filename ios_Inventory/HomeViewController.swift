@@ -20,6 +20,19 @@ class FirstViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    let segueList:[String] = [
+        "clothes",
+        "home",
+        "elec",
+        "toys",
+        "sports",
+        "beauty",
+        "groceries"
+    ]
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segueList.contains(segue.identifier!)  {
+            
+        }
+    }
 }
 
