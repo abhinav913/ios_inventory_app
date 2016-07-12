@@ -8,17 +8,20 @@
         <!--Home Inventory-->
         <scene sceneID="XyI-he-KIb">
             <objects>
-                <tableViewController id="XNs-Df-aUj" userLabel="Home Inventory" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="0" id="XNs-Df-aUj" userLabel="Home Inventory" customClass="HomeViewController" customModule="ios_Inventory" customModuleProvider="target" propertyAccessControl="none" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yem-8x-BkB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="nFq-s9-s0t">
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search All Items" id="nFq-s9-s0t">
                             <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                            </scopeButtonTitles>
                             <connections>
                                 <outlet property="delegate" destination="XNs-Df-aUj" id="T3y-iS-aes"/>
                             </connections>
@@ -33,7 +36,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="70.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Clothing, Shoes, &amp; Accessories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1l-id-OYm">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Clothing, Shoes &amp; Accessories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1l-id-OYm">
                                                     <rect key="frame" x="96" y="13" width="418" height="44"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -49,7 +52,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="bkS-VA-9So" kind="show" identifier="clothes" id="hPh-fB-RX0"/>
+                                            <segue destination="bkS-VA-9So" kind="show" identifier="Clothing, Shoes &amp; Accesories" id="hPh-fB-RX0"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomTableCell" rowHeight="71" id="tER-gD-0cR" customClass="CategoryTableCell" customModule="ios_Inventory">
@@ -75,7 +78,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="bkS-VA-9So" kind="show" identifier="home" id="iQy-8y-klf"/>
+                                            <segue destination="bkS-VA-9So" kind="show" identifier="Home &amp; Garden" id="iQy-8y-klf"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomTableCell" rowHeight="71" id="T03-n2-CiC" customClass="CategoryTableCell" customModule="ios_Inventory">
@@ -101,7 +104,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="bkS-VA-9So" kind="show" identifier="elec" id="cbt-I8-1Yr"/>
+                                            <segue destination="bkS-VA-9So" kind="show" identifier="Electronics &amp; Office" id="cbt-I8-1Yr"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomTableCell" rowHeight="71" id="vox-1p-3q7" customClass="CategoryTableCell" customModule="ios_Inventory">
@@ -127,7 +130,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="bkS-VA-9So" kind="show" identifier="toys" id="nXn-Q6-VzG"/>
+                                            <segue destination="bkS-VA-9So" kind="show" identifier="Toys &amp; Video Games" id="nXn-Q6-VzG"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomTableCell" rowHeight="71" id="sJn-5Q-QLi" customClass="CategoryTableCell" customModule="ios_Inventory">
@@ -137,7 +140,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="70.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Sports, Fitness, &amp; Outdoors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Vx-tT-v7B">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Sports, Fitness &amp; Outdoors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Vx-tT-v7B">
                                                     <rect key="frame" x="96" y="13.5" width="418" height="43.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -153,7 +156,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="bkS-VA-9So" kind="show" identifier="sports" id="JBl-2D-ood"/>
+                                            <segue destination="bkS-VA-9So" kind="show" identifier="Sports, Fitness &amp; Outdoors" id="JBl-2D-ood"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomTableCell" rowHeight="71" id="5bp-bs-q6b" customClass="CategoryTableCell" customModule="ios_Inventory">
@@ -179,7 +182,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="bkS-VA-9So" kind="show" identifier="beauty" id="4pB-Te-jS9"/>
+                                            <segue destination="bkS-VA-9So" kind="show" identifier="Beauty &amp; Health" id="4pB-Te-jS9"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomTableCell" rowHeight="71" id="e2p-Qn-gXS" customClass="CategoryTableCell" customModule="ios_Inventory">
@@ -205,7 +208,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="bkS-VA-9So" kind="show" identifier="groceries" id="CKa-fR-PuR"/>
+                                            <segue destination="bkS-VA-9So" kind="show" identifier="Groceries" id="CKa-fR-PuR"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -220,10 +223,29 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ONM-bq-KDi"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="homeTableView" destination="yem-8x-BkB" id="t6S-cU-hdJ"/>
                         <outlet property="searchDisplayController" destination="XQw-tu-Q52" id="fva-hP-XLO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ao0-eq-IJv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="OlU-2m-rOb">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <prototypes>
+                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ONe" id="szH-P9-P2t">
+                            <rect key="frame" x="0.0" y="28" width="240" height="44"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="szH-P9-P2t" id="6K1-Kt-kTS">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <animations/>
+                            </tableViewCellContentView>
+                            <animations/>
+                        </tableViewCell>
+                    </prototypes>
+                </tableView>
                 <searchDisplayController id="XQw-tu-Q52">
                     <connections>
                         <outlet property="delegate" destination="XNs-Df-aUj" id="9TI-1r-RgX"/>
@@ -245,9 +267,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="a3f-1p-m0s">
+                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="bkS-VA-9So" id="NBM-eF-9GA"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Item Cell" textLabel="jVZ-49-FKS" style="IBUITableViewCellStyleDefault" id="Xt7-GG-FAR">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xt7-GG-FAR" id="Wfn-g2-BiJ">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -272,18 +303,30 @@
                             <outlet property="delegate" destination="bkS-VA-9So" id="J9t-DO-Wp8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Item" id="pfC-8Y-seu" userLabel="Inventory">
+                    <navigationItem key="navigationItem" id="pfC-8Y-seu" userLabel="Inventory">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ren-td-ca3"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="tqU-Nv-YSk" id="48C-ar-cmJ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B1I-ka-oWC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="tqU-Nv-YSk">
+                    <connections>
+                        <outlet property="delegate" destination="bkS-VA-9So" id="PSp-GF-012"/>
+                        <outlet property="searchBar" destination="a3f-1p-m0s" id="dV1-A8-Rwd"/>
+                        <outlet property="searchContentsController" destination="bkS-VA-9So" id="jZz-Ik-nSg"/>
+                        <outlet property="searchResultsDataSource" destination="bkS-VA-9So" id="YGO-Yv-fgW"/>
+                        <outlet property="searchResultsDelegate" destination="bkS-VA-9So" id="ZOH-2f-x8d"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2217" y="-679"/>
         </scene>
         <!--Recent-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" userLabel="Recent" customClass="SecondViewController" customModule="ios_Inventory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" userLabel="Recent" customClass="RecentItemViewController" customModule="ios_Inventory" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -314,32 +357,11 @@
                     <connections>
                         <segue destination="vA3-JV-SA4" kind="relationship" relationship="viewControllers" id="GHF-NR-srC"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="6cS-E7-umb" kind="relationship" relationship="viewControllers" id="oGI-iq-6KN"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="K28-bV-rq6">
-            <objects>
-                <viewController title="Settings" id="6cS-E7-umb" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kBG-xB-bFO"/>
-                        <viewControllerLayoutGuide type="bottom" id="QXl-iU-kJw"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="89R-pR-i4p">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="9Pm-Sa-xzK"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jqd-Mv-3Q0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1107" y="1850"/>
         </scene>
         <!--Home Navigation Controller-->
         <scene sceneID="aDp-jI-6Dz">
@@ -365,6 +387,6 @@
         <image name="first" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CKa-fR-PuR"/>
+        <segue reference="JBl-2D-ood"/>
     </inferredMetricsTieBreakers>
 </document>

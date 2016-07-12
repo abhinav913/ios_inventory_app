@@ -9,16 +9,19 @@
 import UIKit
 
 class ItemCategoryTableViewController: UITableViewController {
-
+    
+    var categoryTitle: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //print(categoryTitle)
+        self.navigationItem.title = categoryTitle
         // Uncomment the following line to preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = false
 
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -28,7 +31,7 @@ class ItemCategoryTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
