@@ -10,16 +10,17 @@ import UIKit
 
 class ItemCategoryTableViewController: UITableViewController {
     
+    @IBOutlet var itemTableView: UITableView!
+    var searchController: UISearchController!
+    var itemSearchResults: String?
     var categoryTitle: String!
+    var categoryItems:[testItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print(categoryTitle)
-        self.navigationItem.title = categoryTitle
-        // Uncomment the following line to preserve selection between presentations
-        self.clearsSelectionOnViewWillAppear = false
-
+        navigationItem.title = categoryTitle
         
+        print(categoryItems)
     }
     
     override func didReceiveMemoryWarning() {
@@ -36,18 +37,20 @@ class ItemCategoryTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return categoryItems.count
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cell = itemTableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath)
+        var item:testItem
+        item = categoryItems[indexPath.row]
+        cell.textLabel?.text = item.name
         return cell
     }
-    */
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        itemTableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -69,12 +72,6 @@ class ItemCategoryTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
 
     /*
     // Override to support conditional rearranging of the table view.

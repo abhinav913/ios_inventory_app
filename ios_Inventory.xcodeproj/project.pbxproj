@@ -7,16 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		260993801D2F14D500605097 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2609937F1D2F14D500605097 /* AppDelegate.swift */; };
-		260993821D2F14D500605097 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260993811D2F14D500605097 /* HomeViewController.swift */; };
-		260993841D2F14D500605097 /* RecentItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260993831D2F14D500605097 /* RecentItemViewController.swift */; };
-		260993871D2F14D500605097 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 260993851D2F14D500605097 /* Main.storyboard */; };
-		260993891D2F14D500605097 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 260993881D2F14D500605097 /* Assets.xcassets */; };
-		2609938C1D2F14D500605097 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2609938A1D2F14D500605097 /* LaunchScreen.storyboard */; };
 		260993971D2F14D500605097 /* ios_InventoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260993961D2F14D500605097 /* ios_InventoryTests.swift */; };
 		260993A21D2F14D500605097 /* ios_InventoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260993A11D2F14D500605097 /* ios_InventoryUITests.swift */; };
-		266635B21D3094B400D6AF57 /* ItemCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266635B11D3094B400D6AF57 /* ItemCategoryTableViewController.swift */; };
-		266635B61D31D68200D6AF57 /* ItemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266635B51D31D68200D6AF57 /* ItemObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,21 +30,12 @@
 
 /* Begin PBXFileReference section */
 		2609937C1D2F14D500605097 /* ios_Inventory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_Inventory.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2609937F1D2F14D500605097 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		260993811D2F14D500605097 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		260993831D2F14D500605097 /* RecentItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentItemViewController.swift; sourceTree = "<group>"; };
-		260993861D2F14D500605097 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		260993881D2F14D500605097 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2609938B1D2F14D500605097 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		2609938D1D2F14D500605097 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		260993921D2F14D500605097 /* ios_InventoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ios_InventoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		260993961D2F14D500605097 /* ios_InventoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_InventoryTests.swift; sourceTree = "<group>"; };
 		260993981D2F14D500605097 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2609939D1D2F14D500605097 /* ios_InventoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ios_InventoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		260993A11D2F14D500605097 /* ios_InventoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_InventoryUITests.swift; sourceTree = "<group>"; };
 		260993A31D2F14D500605097 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		266635B11D3094B400D6AF57 /* ItemCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCategoryTableViewController.swift; sourceTree = "<group>"; };
-		266635B51D31D68200D6AF57 /* ItemObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,15 +86,6 @@
 		2609937E1D2F14D500605097 /* ios_Inventory */ = {
 			isa = PBXGroup;
 			children = (
-				2609937F1D2F14D500605097 /* AppDelegate.swift */,
-				260993811D2F14D500605097 /* HomeViewController.swift */,
-				266635B51D31D68200D6AF57 /* ItemObject.swift */,
-				266635B11D3094B400D6AF57 /* ItemCategoryTableViewController.swift */,
-				260993831D2F14D500605097 /* RecentItemViewController.swift */,
-				260993851D2F14D500605097 /* Main.storyboard */,
-				260993881D2F14D500605097 /* Assets.xcassets */,
-				2609938A1D2F14D500605097 /* LaunchScreen.storyboard */,
-				2609938D1D2F14D500605097 /* Info.plist */,
 			);
 			path = ios_Inventory;
 			sourceTree = "<group>";
@@ -238,9 +212,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2609938C1D2F14D500605097 /* LaunchScreen.storyboard in Resources */,
-				260993891D2F14D500605097 /* Assets.xcassets in Resources */,
-				260993871D2F14D500605097 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,11 +236,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				266635B21D3094B400D6AF57 /* ItemCategoryTableViewController.swift in Sources */,
-				260993841D2F14D500605097 /* RecentItemViewController.swift in Sources */,
-				260993801D2F14D500605097 /* AppDelegate.swift in Sources */,
-				266635B61D31D68200D6AF57 /* ItemObject.swift in Sources */,
-				260993821D2F14D500605097 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,25 +269,6 @@
 			targetProxy = 2609939E1D2F14D500605097 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		260993851D2F14D500605097 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				260993861D2F14D500605097 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		2609938A1D2F14D500605097 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2609938B1D2F14D500605097 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		260993A41D2F14D500605097 /* Debug */ = {
@@ -411,10 +358,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ios_Inventory/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "abhinav.ios-Inventory";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -422,6 +371,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ios_Inventory/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "abhinav.ios-Inventory";

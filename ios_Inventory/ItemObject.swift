@@ -11,4 +11,9 @@ import Foundation
 
 struct testItem {
     let name: String
+    let category: String
+}
+
+struct categoryItem {
+    let name: String
 }
