@@ -110,7 +110,6 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchText = self.searchController.searchBar.text
         filterContentForSearchText(searchText!)
-        print("home yes")
         self.homeTableView.reloadData()
     }
     
@@ -126,7 +125,6 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
     
     func searchDisplayController(controller: UISearchController, shouldReloadTableForString searchString: String!) -> Bool {
         filterContentForSearchText(searchString, scope: "Title")
-        //print("search control home")
         return true
     }
     
@@ -140,7 +138,6 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print(segue.identifier)
         let itemVC = segue.destinationViewController as! ItemCategoryTableViewController
         if (segue.identifier == "Category" && searchController.active && searchController.searchBar.text != "")  {
         } else if segue.identifier == "Category" {

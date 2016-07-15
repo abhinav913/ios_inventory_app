@@ -53,15 +53,15 @@
                                     <segue destination="bkS-VA-9So" kind="show" identifier="Category" id="hPh-fB-RX0"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchItem" textLabel="fM0-AN-NGA" rowHeight="71" style="IBUITableViewCellStyleDefault" id="lAf-L7-Okt" customClass="CategoryTableCell" customModule="ios_Inventory">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchItem" textLabel="fM0-AN-NGA" rowHeight="71" style="IBUITableViewCellStyleDefault" id="lAf-L7-Okt" customClass="CategoryTableCell" customModule="ios_Inventory">
                                 <rect key="frame" x="0.0" y="207" width="600" height="71"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lAf-L7-Okt" id="1J0-ai-BSG">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="70.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="70.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fM0-AN-NGA">
-                                            <rect key="frame" x="15" y="0.0" width="550" height="70.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="570" height="70.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -123,11 +123,11 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Item" id="9rR-K1-7ju">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Item" id="9rR-K1-7ju">
                                 <rect key="frame" x="0.0" y="136" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9rR-K1-7ju" id="qVk-3x-N40">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </tableViewCellContentView>

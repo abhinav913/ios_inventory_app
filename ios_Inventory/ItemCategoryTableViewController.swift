@@ -69,7 +69,6 @@ class ItemCategoryTableViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print(self.categoryItems[indexPath.row].name)
         if (searchController.active && searchController.searchBar.text != "") {
             showAlert(self.filterItems[indexPath.row].name)
         } else {
@@ -88,18 +87,15 @@ class ItemCategoryTableViewController: UIViewController, UITableViewDataSource {
     
     func filterContentForSearchText(searchText:String, scope: String="Title") {
         self.filterItems = self.categoryItems.filter({(item: testItem) -> Bool in
-            print(item)
             let categoryMatch = (scope == "Title")
             let stringMatch = item.name.lowercaseString.containsString(searchText.lowercaseString)
             return categoryMatch && stringMatch
         })
         self.itemTableView.reloadData()
-        print("yas item")
     }
     
     func searchDisplayController(controller: UISearchController, shouldReloadTableForString searchString: String!) -> Bool {
         self.filterContentForSearchText(searchString, scope: "Title")
-        print("yes1")
         return true
     }
     
@@ -148,7 +144,6 @@ extension ItemCategoryTableViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchText = self.searchController.searchBar.text
         filterContentForSearchText(searchText!)
-        print("breh")
         self.itemTableView.reloadData()
     }
 }
