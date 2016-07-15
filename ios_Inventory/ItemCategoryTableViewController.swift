@@ -8,17 +8,27 @@
 
 import UIKit
 
-class ItemCategoryTableViewController: UITableViewController {
-
+class ItemCategoryTableViewController: UIViewController, UITableViewDataSource {
+    
+    
+    @IBOutlet var itemTableView: UITableView!
+    var searchController: UISearchController!
+    var categoryTitle: String!
+    var categoryItems:[testItem] = []
+    var filterItems:[testItem] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        self.clearsSelectionOnViewWillAppear = false
-
-        
+        self.navigationItem.title = categoryTitle
+        self.searchController = UISearchController(searchResultsController: nil)
+        self.searchController.searchBar.sizeToFit()
+        self.itemTableView.tableHeaderView = self.searchController.searchBar
+        self.searchController.searchResultsUpdater = self
+        definesPresentationContext = true
+        self.searchController.dimsBackgroundDuringPresentation = false
+        self.itemTableView.reloadData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -26,26 +36,73 @@ class ItemCategoryTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        if (searchController.active && searchController.searchBar.text != "") {
+            return self.filterItems.count
+        } else {
+            return self.categoryItems.count
+        }
     }
 
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = self.itemTableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath)
+        var item:testItem
+        if (searchController.active && searchController.searchBar.text != "") {
+            item = self.filterItems[indexPath.row]
+        } else {
+            item = self.categoryItems[indexPath.row]
+        }
+        cell.textLabel?.text = item.name
         return cell
     }
-    */
+    
+    func showAlert(item: String) {
+        let alert = UIAlertController(title: item, message: "Price: $\nQuantity: \nNotes: ", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print(self.categoryItems[indexPath.row].name)
+        if (searchController.active && searchController.searchBar.text != "") {
+            showAlert(self.filterItems[indexPath.row].name)
+        } else {
+            showAlert(self.categoryItems[indexPath.row].name)
+        }
+        self.itemTableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
 
+    //SEARCH -- in category doesnt work IDK WHY????
+  /*  func updateSearchResultsForSearchController(searchController: UISearchController) {
+        let searchText = self.searchController.searchBar.text
+        filterContentForSearchText(searchText!)
+        print("breh")
+        self.itemTableView.reloadData()
+    }*/
+    
+    func filterContentForSearchText(searchText:String, scope: String="Title") {
+        self.filterItems = self.categoryItems.filter({(item: testItem) -> Bool in
+            print(item)
+            let categoryMatch = (scope == "Title")
+            let stringMatch = item.name.lowercaseString.containsString(searchText.lowercaseString)
+            return categoryMatch && stringMatch
+        })
+        self.itemTableView.reloadData()
+        print("yas item")
+    }
+    
+    func searchDisplayController(controller: UISearchController, shouldReloadTableForString searchString: String!) -> Bool {
+        self.filterContentForSearchText(searchString, scope: "Title")
+        print("yes1")
+        return true
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -66,12 +123,6 @@ class ItemCategoryTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
 
     /*
     // Override to support conditional rearranging of the table view.
@@ -91,4 +142,13 @@ class ItemCategoryTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension ItemCategoryTableViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        let searchText = self.searchController.searchBar.text
+        filterContentForSearchText(searchText!)
+        print("breh")
+        self.itemTableView.reloadData()
+    }
 }

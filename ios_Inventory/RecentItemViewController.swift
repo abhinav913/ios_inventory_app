@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class RecentItemViewController: UIViewController {
 
     let searchController = UISearchController(searchResultsController: nil)
     var placement_data = [String]()
@@ -44,19 +44,19 @@ class SecondViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-  /*  //Table View
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    //Table View
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.active && searchController.searchBar.text != "" {
             return filteredData.count
         }
         return placement_data.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
         let data: String
         if searchController.active && searchController.searchBar.text != "" {
@@ -66,7 +66,7 @@ class SecondViewController: UIViewController {
         }
         cell.textLabel!.text = data
         return cell
-    } */
+    }
 }
 /*
 extension SecondViewController: UISearchResultsUpdating {
