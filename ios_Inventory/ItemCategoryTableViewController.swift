@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 
+
 class ItemCategoryTableViewController: UITableViewController {
     
     @IBOutlet var itemTableView: UITableView!
@@ -16,6 +17,7 @@ class ItemCategoryTableViewController: UITableViewController {
     var itemSearchResults: String?
     var categoryTitle: String!
     var categoryItems = [Item]()
+    var filterItems:[Item] = []
     
     var dbRef:FIRDatabaseReference!
 
@@ -25,6 +27,15 @@ class ItemCategoryTableViewController: UITableViewController {
         navigationItem.title = categoryTitle
         dbRef = FIRDatabase.database().reference().child("inventory-items")
         startObservingDB()
+        self.navigationItem.title = categoryTitle
+        self.searchController = UISearchController(searchResultsController: nil)
+        self.searchController.searchBar.sizeToFit()
+        self.itemTableView.tableHeaderView = self.searchController.searchBar
+        self.searchController.searchResultsUpdater = self
+        definesPresentationContext = true
+        self.searchController.dimsBackgroundDuringPresentation = false
+        self.itemTableView.reloadData()
+
         
         print(categoryItems)
     }
@@ -47,13 +58,13 @@ class ItemCategoryTableViewController: UITableViewController {
         
     }
 
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -62,21 +73,57 @@ class ItemCategoryTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return categoryItems.count
+        if (searchController.active && searchController.searchBar.text != "") {
+            return self.filterItems.count
+        } else {
+            return self.categoryItems.count
+        }
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = itemTableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath)
         var item:Item
-        item = categoryItems[indexPath.row]
+        if (searchController.active && searchController.searchBar.text != "") {
+            item = self.filterItems[indexPath.row]
+        } else {
+            item = self.categoryItems[indexPath.row]
+        }
         cell.textLabel?.text = item.name
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        itemTableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if (searchController.active && searchController.searchBar.text != "") {
+            showAlert(self.filterItems[indexPath.row].name)
+        } else {
+            showAlert(self.categoryItems[indexPath.row].name)
+        }
+        self.itemTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+    
+    func showAlert(item: String) {
+        let alert = UIAlertController(title: item, message: "Price: $\nQuantity: \nNotes: ", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+   
 
+    //SEARCH --works    
+    func filterContentForSearchText(searchText:String, scope: String="Title") {
+        self.filterItems = self.categoryItems.filter({(item: Item) -> Bool in
+            let categoryMatch = (scope == "Title")
+            let stringMatch = item.name.lowercaseString.containsString(searchText.lowercaseString)
+            return categoryMatch && stringMatch
+        })
+        self.itemTableView.reloadData()
+    }
+    
+    func searchDisplayController(controller: UISearchController, shouldReloadTableForString searchString: String!) -> Bool {
+        self.filterContentForSearchText(searchString, scope: "Title")
+        return true
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -106,14 +153,21 @@ class ItemCategoryTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
     }
-    */
 
+
+}
+
+extension ItemCategoryTableViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        let searchText = self.searchController.searchBar.text
+        filterContentForSearchText(searchText!)
+        self.itemTableView.reloadData()
+    }
 }

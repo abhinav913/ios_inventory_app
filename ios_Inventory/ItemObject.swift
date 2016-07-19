@@ -51,5 +51,5 @@ struct Item {
     func toAnyObject() -> AnyObject {
         return ["name":name, "price":price, "category":category]
     }
-    
+
 }
