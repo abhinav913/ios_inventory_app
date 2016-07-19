@@ -37,8 +37,10 @@ class AddItemViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         itemNotes.delegate = self
         itemNotes.text = "Add Notes Here..."
         itemNotes.textColor = UIColor.lightGrayColor()
-        //itemNotes.layer.borderColor = UIColor.darkGrayColor()
-        print(itemArray)
+        itemNotes.layer.cornerRadius = 8.0
+        itemNotes.layer.masksToBounds = true
+        itemNotes.layer.borderColor = UIColor( red: 210/255, green: 210/255, blue:210/255, alpha: 1.0 ).CGColor
+        itemNotes.layer.borderWidth = 1.0
     }
     
     func textViewDidBeginEditing(textView: UITextView) {

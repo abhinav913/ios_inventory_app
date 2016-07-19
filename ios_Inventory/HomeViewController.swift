@@ -95,14 +95,9 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
         if (searchController.active && searchController.searchBar.text != "") {
             var item:testItem
             item = filterItemArray[indexPath.row]
-            segueName = item.name
-            let alert = UIAlertController(title: segueName, message: "Price: $\nQuantity: \nNotes: ", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: item.name, message: "Price: $\nQuantity: \nNotes: ", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
-        } else {
-            var item:categoryItem
-            item = categoryArray[indexPath.row]
-            segueName = item.name
         }
     }
     
@@ -128,13 +123,13 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
         return true
     }
     
-    func filterCategoryItems(var dst: [testItem], category: String) -> [testItem] {
+    func filterCategoryItems(var destination: [testItem], category: String) -> [testItem] {
         for item in itemArray {
             if item.category == category {
-                dst += [item]
+                destination += [item]
             }
         }
-        return dst
+        return destination
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
