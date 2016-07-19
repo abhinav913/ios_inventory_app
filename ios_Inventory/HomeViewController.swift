@@ -7,37 +7,37 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class HomeViewController: UIViewController, UISearchResultsUpdating, UITableViewDataSource  {
 
     @IBOutlet weak var homeTableView: UITableView!
+    
+    var dbRef:FIRDatabaseReference!
+    
     var searchController: UISearchController!
     var segueName = "start"
     var itemSearchResults: String?
-    var itemArray = [testItem]()
-    var filterItemArray = [testItem]()
+    var itemArray = [Item]()
+    var filterItemArray = [Item]()
     var showSearchResults = false
-    var categoryArray: [categoryItem] = [
-        categoryItem(name: "Clothing, Shoes & Accesories"),
-        categoryItem(name: "Home & Garden"),
-        categoryItem(name: "Electronics & Office"),
-        categoryItem(name: "Toys & Video Games"),
-        categoryItem(name: "Sports, Fitness & Outdoors"),
-        categoryItem(name: "Beauty & Health"),
-        categoryItem(name: "Groceries & Food"),
+    var categoryArray: [String] = [
+        "Clothing, Shoes & Accesories",
+        "Home & Garden",
+        "Electronics & Office",
+        "Toys & Video Games",
+        "Sports, Fitness & Outdoors",
+        "Beauty & Health",
+        "Groceries & Food",
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        itemArray += [testItem(name: "Bacon", category: "Clothing, Shoes & Accesories")]
-        itemArray += [testItem(name: "Eggs", category: "Groceries & Food")]
-        itemArray += [testItem(name: "Sandwich", category: "Sports, Fitness & Outdoors")]
-        itemArray += [testItem(name: "Burrito", category: "Groceries & Food")]
-        itemArray += [testItem(name: "Chicken", category: "Groceries & Food")]
-        itemArray += [testItem(name: "Beans", category: "Groceries & Food")]
-        itemArray += [testItem(name: "Lettuce", category: "Toys & Video Games")]
-        itemArray += [testItem(name: "Onions", category: "Toys & Video Games")]
-        itemArray += [testItem(name: "Crackers", category: "Toys & Video Games")]
+//        itemArray += [testItem(name: "Bacon", category: "Clothing, Shoes & Accesories")]
+        dbRef = FIRDatabase.database().reference().child("inventory-items")
+        let itemOne = Item(name: "Bacon", price: 2.00, category: "Groceries & Food")
+        let itemRef = self.dbRef.child("Bacon".lowercaseString)
+        itemRef.setValue(itemOne.toAnyObject())
         
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.sizeToFit()
@@ -48,6 +48,8 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
         homeTableView.reloadData()
         
     }
+    
+
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchText = searchController.searchBar.text
@@ -86,13 +88,13 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = homeTableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
         if (searchController.active && searchController.searchBar.text != "") {
-            var item:testItem
+            var item:Item
             item = filterItemArray[indexPath.row]
             cell.textLabel?.text = item.name
         } else {
-            var item:categoryItem
-            item = categoryArray[indexPath.row]
-            cell.textLabel?.text = item.name
+            var category:String
+            category = categoryArray[indexPath.row]
+            cell.textLabel?.text = category
         }
         return cell
     }
@@ -100,21 +102,22 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         homeTableView.deselectRowAtIndexPath(indexPath, animated: true)
         if (searchController.active && searchController.searchBar.text != "") {
-            var item:testItem
+            var item:Item
             item = filterItemArray[indexPath.row]
             segueName = item.name
-        } else {
-            var item:categoryItem
-            item = categoryArray[indexPath.row]
-            segueName = item.name
         }
+//        else {
+//            var category:categoryItem
+//            item = categoryArray[indexPath.row]
+//            segueName = item.name
+//        }
     }
     
     //Search
     func filterContentForSearchText(searchText:String, scope: String="Title") {
-        filterItemArray = itemArray.filter({(item: testItem) -> Bool in
+        filterItemArray = itemArray.filter({(item: Item) -> Bool in
             let categoryMatch = (scope == "Title")
-            let stringMatch = item.name.lowercaseString.containsString(searchText)
+            let stringMatch = item.name.lowercaseString.containsString(searchText.lowercaseString)
             return categoryMatch && stringMatch
         })
     }
@@ -124,15 +127,15 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
         return true
     }
     
-    func filterCategoryItems(var dst: [testItem], category: String) -> [testItem] {
+    func filterCategoryItems(var destinationArray: [Item], category: String) -> [Item] {
         for item in itemArray {
             if item.category == category {
-                dst += [item]
+                destinationArray += [item]
             }
         }
-        return dst
+        return destinationArray
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print(segue.identifier)
         let itemVC = segue.destinationViewController as! ItemCategoryTableViewController

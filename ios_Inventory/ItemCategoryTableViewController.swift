@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class ItemCategoryTableViewController: UITableViewController {
     
@@ -14,14 +15,38 @@ class ItemCategoryTableViewController: UITableViewController {
     var searchController: UISearchController!
     var itemSearchResults: String?
     var categoryTitle: String!
-    var categoryItems:[testItem] = []
+    var categoryItems = [Item]()
+    
+    var dbRef:FIRDatabaseReference!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = categoryTitle
+        dbRef = FIRDatabase.database().reference().child("inventory-items")
+        startObservingDB()
         
         print(categoryItems)
     }
+    
+    func startObservingDB() {
+        dbRef.observeEventType(.Value, withBlock: {(snapshot:FIRDataSnapshot) in
+            var newItems = [Item]()
+            for item in snapshot.children {
+                let itemObject = Item(snapshot:item as! FIRDataSnapshot)
+                if (itemObject.category == self.categoryTitle) {
+                    newItems.append(itemObject)
+                }
+            }
+            self.categoryItems = newItems
+            self.tableView.reloadData()
+            
+            }) {(error:NSError) in
+                print(error.description)
+        }
+        
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -42,7 +67,7 @@ class ItemCategoryTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = itemTableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath)
-        var item:testItem
+        var item:Item
         item = categoryItems[indexPath.row]
         cell.textLabel?.text = item.name
         return cell
