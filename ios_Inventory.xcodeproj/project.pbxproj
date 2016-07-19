@@ -17,6 +17,7 @@
 		260993A21D2F14D500605097 /* ios_InventoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260993A11D2F14D500605097 /* ios_InventoryUITests.swift */; };
 		266635B21D3094B400D6AF57 /* ItemCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266635B11D3094B400D6AF57 /* ItemCategoryTableViewController.swift */; };
 		266635B61D31D68200D6AF57 /* ItemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266635B51D31D68200D6AF57 /* ItemObject.swift */; };
+		26F4934F1D3AE906004633A6 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F4934E1D3AE906004633A6 /* AddItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		260993A31D2F14D500605097 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		266635B11D3094B400D6AF57 /* ItemCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCategoryTableViewController.swift; sourceTree = "<group>"; };
 		266635B51D31D68200D6AF57 /* ItemObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemObject.swift; sourceTree = "<group>"; };
+		26F4934E1D3AE906004633A6 /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				266635B51D31D68200D6AF57 /* ItemObject.swift */,
 				260993831D2F14D500605097 /* RecentItemViewController.swift */,
 				260993851D2F14D500605097 /* Main.storyboard */,
+				26F4934E1D3AE906004633A6 /* AddItemViewController.swift */,
 				260993881D2F14D500605097 /* Assets.xcassets */,
 				2609938A1D2F14D500605097 /* LaunchScreen.storyboard */,
 				2609938D1D2F14D500605097 /* Info.plist */,
@@ -270,6 +273,7 @@
 				260993801D2F14D500605097 /* AppDelegate.swift in Sources */,
 				266635B61D31D68200D6AF57 /* ItemObject.swift in Sources */,
 				260993821D2F14D500605097 /* HomeViewController.swift in Sources */,
+				26F4934F1D3AE906004633A6 /* AddItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

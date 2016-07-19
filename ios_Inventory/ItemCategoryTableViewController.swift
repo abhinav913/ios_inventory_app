@@ -77,14 +77,7 @@ class ItemCategoryTableViewController: UIViewController, UITableViewDataSource {
         self.itemTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
-    //SEARCH -- in category doesnt work IDK WHY????
-  /*  func updateSearchResultsForSearchController(searchController: UISearchController) {
-        let searchText = self.searchController.searchBar.text
-        filterContentForSearchText(searchText!)
-        print("breh")
-        self.itemTableView.reloadData()
-    }*/
-    
+    //SEARCH --works    
     func filterContentForSearchText(searchText:String, scope: String="Title") {
         self.filterItems = self.categoryItems.filter({(item: testItem) -> Bool in
             let categoryMatch = (scope == "Title")
@@ -128,15 +121,14 @@ class ItemCategoryTableViewController: UIViewController, UITableViewDataSource {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
     }
-    */
+
 
 }
 

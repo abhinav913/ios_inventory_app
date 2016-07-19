@@ -15,7 +15,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search All Items" id="nFq-s9-s0t">
-                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <textInputTraits key="textInputTraits"/>
@@ -28,7 +28,7 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Category" rowHeight="71" id="lwz-VO-Ffv" customClass="CategoryTableCell" customModule="ios_Inventory">
-                                <rect key="frame" x="0.0" y="136" width="600" height="71"/>
+                                <rect key="frame" x="0.0" y="72" width="600" height="71"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lwz-VO-Ffv" id="cQo-QR-jsk">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="70.5"/>
@@ -54,7 +54,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchItem" textLabel="fM0-AN-NGA" rowHeight="71" style="IBUITableViewCellStyleDefault" id="lAf-L7-Okt" customClass="CategoryTableCell" customModule="ios_Inventory">
-                                <rect key="frame" x="0.0" y="207" width="600" height="71"/>
+                                <rect key="frame" x="0.0" y="143" width="600" height="71"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lAf-L7-Okt" id="1J0-ai-BSG">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="70.5"/>
@@ -81,7 +81,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Inventory" id="oV1-fd-OHW" userLabel="Inventory">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ONM-bq-KDi"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ONM-bq-KDi">
+                            <connections>
+                                <segue destination="AYc-og-lpx" kind="show" identifier="addItem" id="LsJ-8Q-g6y"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="homeTableView" destination="yem-8x-BkB" id="t6S-cU-hdJ"/>
@@ -101,6 +105,97 @@
             </objects>
             <point key="canvasLocation" x="1487" y="-711"/>
         </scene>
+        <!--Add Item-->
+        <scene sceneID="quR-eY-bxY">
+            <objects>
+                <viewController id="AYc-og-lpx" userLabel="Add Item" customClass="AddItemViewController" customModule="ios_Inventory" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zer-lA-mkH"/>
+                        <viewControllerLayoutGuide type="bottom" id="gxU-gD-mTO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aUM-nY-swE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8D-S9-3Ei">
+                                <rect key="frame" x="61" y="134" width="67" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EQ1-xo-1jE">
+                                <rect key="frame" x="127" y="134" width="153" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="alphabet" keyboardAppearance="alert"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price:  $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXE-SU-IzC">
+                                <rect key="frame" x="61" y="185" width="74" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A3G-F0-CgD">
+                                <rect key="frame" x="135" y="185" width="145" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3c4-kC-ICC">
+                                <rect key="frame" x="61" y="226" width="88" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Av9-GA-xdd" userLabel="categoryPicker">
+                                <rect key="frame" x="148" y="226" width="132" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notes:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RaO-sg-Zac">
+                                <rect key="frame" x="61" y="269" width="67" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OUA-Me-JSe">
+                                <rect key="frame" x="61" y="298" width="219" height="128"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fa9-ue-dKi">
+                                <rect key="frame" x="135" y="446" width="104" height="35"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Add Item"/>
+                                <connections>
+                                    <action selector="addItemButton:" destination="AYc-og-lpx" eventType="touchUpInside" id="2aX-iJ-ndS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Item" id="HrY-vO-QHG"/>
+                    <connections>
+                        <outlet property="categoryPicker" destination="Av9-GA-xdd" id="fyf-lm-eS2"/>
+                        <outlet property="itemName" destination="EQ1-xo-1jE" id="ye8-bf-Gyj"/>
+                        <outlet property="itemNotes" destination="OUA-Me-JSe" id="Mv0-mw-a92"/>
+                        <outlet property="itemPrice" destination="A3G-F0-CgD" id="a28-qZ-hwg"/>
+                        <segue destination="XNs-Df-aUj" kind="show" identifier="itemAddedAlert" id="xCi-P2-xG2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="770-rq-dAs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1874" y="128"/>
+        </scene>
         <!--Item Inventory-->
         <scene sceneID="7Kg-uo-Ebh">
             <objects>
@@ -111,7 +206,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="a3f-1p-m0s">
-                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <textInputTraits key="textInputTraits"/>
@@ -124,7 +219,7 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Item" id="9rR-K1-7ju">
-                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9rR-K1-7ju" id="qVk-3x-N40">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -140,7 +235,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="pfC-8Y-seu" userLabel="Inventory">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ren-td-ca3"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ren-td-ca3">
+                            <connections>
+                                <segue destination="AYc-og-lpx" kind="show" identifier="addItemCategory" id="WXN-RJ-2aq"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="itemTableView" destination="IZn-6I-1hT" id="OcJ-vH-0HF"/>
@@ -223,4 +322,8 @@
     <resources>
         <image name="first" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="xCi-P2-xG2"/>
+        <segue reference="WXN-RJ-2aq"/>
+    </inferredMetricsTieBreakers>
 </document>

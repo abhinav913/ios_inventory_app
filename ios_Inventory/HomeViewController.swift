@@ -138,11 +138,16 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let itemVC = segue.destinationViewController as! ItemCategoryTableViewController
-        if (segue.identifier == "Category" && searchController.active && searchController.searchBar.text != "")  {
-        } else if segue.identifier == "Category" {
-            itemVC.categoryTitle = segueList[(homeTableView.indexPathForSelectedRow?.row)!]
-            itemVC.categoryItems = filterCategoryItems(itemVC.categoryItems, category: itemVC.categoryTitle)
+        if segue.identifier == "Category" {
+            let itemVC = segue.destinationViewController as! ItemCategoryTableViewController
+            if (segue.identifier == "Category" && searchController.active && searchController.searchBar.text != "")  {
+            } else if segue.identifier == "Category" {
+                itemVC.categoryTitle = segueList[(homeTableView.indexPathForSelectedRow?.row)!]
+                itemVC.categoryItems = filterCategoryItems(itemVC.categoryItems, category: itemVC.categoryTitle)
+            }
+        } else if segue.identifier == "addItem" {
+            let addVC = segue.destinationViewController as! AddItemViewController
+            addVC.itemArray = itemArray
         }
     }
 
