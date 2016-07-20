@@ -12,11 +12,11 @@ import FirebaseDatabase
 struct Item {
     let key:String!
     let name:String!
-    let price:Float!
+    let price:Double!
     let category:String!
     let itemRef:FIRDatabaseReference?
     
-    init(name:String, price:Float, category:String, key:String="") {
+    init(name:String, price:Double, category:String, key:String="") {
         self.key = key
         self.name = name
         self.price = price
@@ -34,7 +34,7 @@ struct Item {
             self.name = ""
         }
         
-        if let itemPrice = snapshot.value!["price"] as? Float {
+        if let itemPrice = snapshot.value!["price"] as? Double {
             self.price = itemPrice
         } else {
             self.price = nil
