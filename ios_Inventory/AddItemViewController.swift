@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class AddItemViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate {
     
@@ -15,6 +16,8 @@ class AddItemViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var itemPrice: UITextField!
     @IBOutlet weak var itemName: UITextField!
     @IBOutlet weak var categoryPicker: UITextField!
+    
+    var dbRef:FIRDatabaseReference!
     
     var itemArray = [Item]()
     
@@ -34,6 +37,7 @@ class AddItemViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         let pickerView = UIPickerView()
         pickerView.delegate = self
         categoryPicker.inputView = pickerView
+        categoryPicker.text = ""
         itemNotes.delegate = self
         itemNotes.text = "Add Notes Here..."
         itemNotes.textColor = UIColor.lightGrayColor()
@@ -41,6 +45,7 @@ class AddItemViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         itemNotes.layer.masksToBounds = true
         itemNotes.layer.borderColor = UIColor( red: 210/255, green: 210/255, blue:210/255, alpha: 1.0 ).CGColor
         itemNotes.layer.borderWidth = 1.0
+        dbRef = FIRDatabase.database().reference().child("inventory-items")
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
@@ -79,9 +84,12 @@ class AddItemViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     @IBAction func addItemButton(sender: AnyObject) {
-        if itemPrice.text != "" || itemName.text != "" || categoryPicker.text != "" {
+        if itemPrice.text != "" && itemName.text != "" && categoryPicker.text != "" {
             //TODO FIX PRICE
-            itemArray.append(Item(name: itemName.text!, price: 0, category: categoryPicker.text!))
+            let newItem = Item(name: itemName.text!, price: Double(itemPrice.text!)!, category: categoryPicker.text!)
+            let itemRef = self.dbRef.child(newItem.name)
+            itemRef.setValue(newItem.toAnyObject())
+            //itemArray.append(Item(name: itemName.text!, price: 0, category: categoryPicker.text!))
             let alert = UIAlertController(title: "Item Added", message: "", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:  {
                 [unowned self] (action) -> Void in

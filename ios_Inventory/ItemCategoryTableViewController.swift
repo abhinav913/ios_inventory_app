@@ -94,15 +94,15 @@ class ItemCategoryTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if (searchController.active && searchController.searchBar.text != "") {
-            showAlert(self.filterItems[indexPath.row].name)
+            showAlert(self.filterItems[indexPath.row].name, price: self.categoryItems[indexPath.row].price)
         } else {
-            showAlert(self.categoryItems[indexPath.row].name)
+            showAlert(self.categoryItems[indexPath.row].name, price: self.categoryItems[indexPath.row].price)
         }
         self.itemTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    func showAlert(item: String) {
-        let alert = UIAlertController(title: item, message: "Price: $\nQuantity: \nNotes: ", preferredStyle: UIAlertControllerStyle.Alert)
+    func showAlert(item: String, price: Double) {
+        let alert = UIAlertController(title: item, message: "Price: $\(price)\nQuantity: \nNotes: ", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
