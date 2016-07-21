@@ -11,7 +11,7 @@ import FirebaseDatabase
 
 class AddItemViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate {
     
-    
+    var categoryName:String = ""
     @IBOutlet weak var itemNotes: UITextView!
     @IBOutlet weak var itemPrice: UITextField!
     @IBOutlet weak var itemName: UITextField!
@@ -46,6 +46,9 @@ class AddItemViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         itemNotes.layer.borderColor = UIColor( red: 210/255, green: 210/255, blue:210/255, alpha: 1.0 ).CGColor
         itemNotes.layer.borderWidth = 1.0
         dbRef = FIRDatabase.database().reference().child("inventory-items")
+        if categoryName != "" {
+            categoryPicker.text = categoryName
+        }
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
