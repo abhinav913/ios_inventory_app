@@ -93,12 +93,18 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
 
     }
     
+    func roundToPlaces(value:Double, places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return round(value * divisor) / divisor
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         homeTableView.deselectRowAtIndexPath(indexPath, animated: true)
         if (searchController.active && searchController.searchBar.text != "") {
             var item:Item
             item = filterItemArray[indexPath.row]
-            let alert = UIAlertController(title: item.name, message: "Price: $\nQuantity: \nNotes: ", preferredStyle: UIAlertControllerStyle.Alert)
+            let price = roundToPlaces(item.price, places: 2)
+            let alert = UIAlertController(title: item.name, message: "Price: $\(price)\nQuantity: \nNotes: ", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
@@ -120,10 +126,11 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
     }
     
     
-        func searchDisplayController(controller: UISearchController, shouldReloadTableForString searchString: String!) -> Bool {
+    func searchDisplayController(controller: UISearchController, shouldReloadTableForString searchString: String!) -> Bool {
         filterContentForSearchText(searchString, scope: "Title")
         return true
     }
+    
     func filterCategoryItems(var destination: [Item], category: String) -> [Item] {
         for item in itemArray {
             if item.category == category {

@@ -101,7 +101,13 @@ class ItemCategoryTableViewController: UITableViewController {
         self.itemTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    func showAlert(item: String, price: Double) {
+    func roundToPlaces(value:Double, places:Int) -> Double {
+        let divisor = pow(10.00, Double(places))
+        return round(value * divisor) / divisor
+    }
+    
+    func showAlert( item: String, var price: Double) {
+        price = roundToPlaces(price, places: 2)
         let alert = UIAlertController(title: item, message: "Price: $\(price)\nQuantity: \nNotes: ", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
@@ -158,7 +164,10 @@ class ItemCategoryTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        if segue.identifier == "addItem" {
+            let addVC = segue.destinationViewController as! AddItemViewController
+            addVC.categoryName = categoryTitle
+        }
     }
 
 
