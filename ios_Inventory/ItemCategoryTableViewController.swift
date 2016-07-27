@@ -18,6 +18,8 @@ class ItemCategoryTableViewController: UITableViewController {
     var categoryTitle: String!
     var categoryItems = [Item]()
     var filterItems:[Item] = []
+    var allItems:[Item] = []
+    var dbCheck = true
     
     var dbRef:FIRDatabaseReference!
 
@@ -26,7 +28,9 @@ class ItemCategoryTableViewController: UITableViewController {
         super.viewDidLoad()
         navigationItem.title = categoryTitle
         dbRef = FIRDatabase.database().reference().child("inventory-items")
-        startObservingDB()
+        if dbCheck {
+            startObservingDB()
+        }
         self.navigationItem.title = categoryTitle
         self.searchController = UISearchController(searchResultsController: nil)
         self.searchController.searchBar.sizeToFit()
@@ -114,6 +118,7 @@ class ItemCategoryTableViewController: UITableViewController {
     }
     
     func showAlert(item: String, var price: Double) {
+        price += 0.0000001
         price = roundToPlaces(price, places: 2)
         let alert = UIAlertController(title: item, message: "Price: $\(price)\nQuantity: \nNotes: ", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
@@ -174,6 +179,7 @@ class ItemCategoryTableViewController: UITableViewController {
             let addVC = segue.destinationViewController as! AddItemViewController
             addVC.categoryName = categoryTitle
             addVC.itemArray = categoryItems
+            addVC.allItems = allItems
         }
     }
 

@@ -20,6 +20,7 @@ class AddItemViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     var dbRef:FIRDatabaseReference!
     
     var itemArray = [Item]()
+    var allItems = [Item]()
     
     let categoryList:[String] = [
         "Clothing, Shoes & Accesories",
@@ -87,7 +88,8 @@ class AddItemViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     func nameCheck(name: String) -> Bool {
-        for item in self.itemArray {
+        print(allItems)
+        for item in self.allItems {
             if item.name.lowercaseString == name.lowercaseString {
                 return true
             }
