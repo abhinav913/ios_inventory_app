@@ -16,15 +16,17 @@ struct Item {
     let category:String!
     let notes:String!
     let quantity:Int!
+    let time:NSDate!
     let itemRef:FIRDatabaseReference?
     
-    init(name:String, price:Double, category:String, notes:String, quantity:Int, key:String="") {
+    init(name:String, price:Double, category:String, notes:String, quantity:Int, time:NSDate, key:String="") {
         self.key = key
         self.name = name
         self.price = price
         self.category = category
         self.notes = notes
         self.quantity = quantity
+        self.time = time
         self.itemRef = nil
     }
     
@@ -62,10 +64,16 @@ struct Item {
             self.quantity = nil
         }
         
+        if let itemTime = snapshot.value!["time"] as? NSDate {
+            self.time = itemTime
+        } else {
+            self.time = nil
+        }
+        
     }
     
     func toAnyObject() -> AnyObject {
-        return ["name":name, "price":price, "category":category, "notes":notes, "quantity":quantity]
+        return ["name":name, "price":price, "category":category, "notes":notes, "quantity":quantity, "time":time]
     }
 
 }

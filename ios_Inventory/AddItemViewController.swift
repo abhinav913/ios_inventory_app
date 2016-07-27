@@ -116,7 +116,7 @@ class AddItemViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 if itemNotes == "Add Notes Here..." {
                     itemNotes.text = ""
                 }
-                let newItem = Item(name: itemName.text!, price: roundToPlaces(Double(itemPrice.text!)!, places: 2), category: categoryPicker.text!, notes: itemNotes.text, quantity: 1)
+                let newItem = Item(name: itemName.text!, price: roundToPlaces(Double(itemPrice.text!)!, places: 2), category: categoryPicker.text!, notes: itemNotes.text, quantity: 1, time: NSDate())
                 let itemRef = self.dbRef.child(newItem.name)
                 itemRef.setValue(newItem.toAnyObject())
                 let alert = UIAlertController(title: "Item Added", message: "", preferredStyle: UIAlertControllerStyle.Alert)

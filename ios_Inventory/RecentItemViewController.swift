@@ -8,8 +8,9 @@
 
 import UIKit
 
-class RecentItemViewController: UIViewController {
+class RecentItemViewController: UITableViewController {
 
+    @IBOutlet var recentItemView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

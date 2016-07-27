@@ -163,7 +163,13 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Item" id="HrY-vO-QHG"/>
+                    <navigationItem key="navigationItem" title="Add Item" id="HrY-vO-QHG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="Qqa-WA-bjE">
+                            <connections>
+                                <segue destination="XNs-Df-aUj" kind="show" id="hdl-Ff-fEv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="categoryPicker" destination="Av9-GA-xdd" id="fyf-lm-eS2"/>
                         <outlet property="itemName" destination="EQ1-xo-1jE" id="ye8-bf-Gyj"/>
@@ -236,25 +242,58 @@
             </objects>
             <point key="canvasLocation" x="2217" y="-679"/>
         </scene>
-        <!--Recent-->
-        <scene sceneID="wg7-f3-ORb">
+        <!--Recent Item View Controller-->
+        <scene sceneID="dVa-ml-RBQ">
             <objects>
-                <viewController id="8rJ-Kc-sve" userLabel="Recent" customClass="RecentItemViewController" customModule="ios_Inventory" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
-                        <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
+                <tableViewController id="Cy6-VF-RgI" userLabel="Recent Item View Controller" customClass="RecentItemViewController" customModule="ios_Inventory" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hyE-H3-iN7" customClass="RecentItemView" customModule="ios_Inventory">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" systemItem="recents" id="cPa-gy-q4n" userLabel="Search"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Recent" id="q10-WI-uKU">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q10-WI-uKU" id="kqk-fg-adc">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Cy6-VF-RgI" id="kGt-2u-Tbg"/>
+                            <outlet property="delegate" destination="Cy6-VF-RgI" id="UhN-iL-I32"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Recent Items" id="UeA-HB-vZR" userLabel="Recent Items"/>
+                    <connections>
+                        <outlet property="recentItemView" destination="hyE-H3-iN7" id="vXc-jg-SXG"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZQ9-0Z-M6c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1174" y="1028"/>
+            <point key="canvasLocation" x="1510" y="848"/>
+        </scene>
+        <!--Recent Items Navigation Controller-->
+        <scene sceneID="Q6H-VE-eWP">
+            <objects>
+                <navigationController id="nAZ-Xh-xQz" userLabel="Recent Items Navigation Controller" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="recents" id="3Jh-Rc-WS5"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rcN-2n-bTf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Cy6-VF-RgI" kind="relationship" relationship="rootViewController" id="5Ee-dZ-CqO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rJV-vh-WiN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="690" y="848"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ShG-Yt-Ofr">
@@ -305,7 +344,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="vA3-JV-SA4" kind="relationship" relationship="viewControllers" id="GHF-NR-srC"/>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="nAZ-Xh-xQz" kind="relationship" relationship="viewControllers" id="Og0-A1-fRy"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -337,6 +376,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xCi-P2-xG2"/>
-        <segue reference="VCa-w3-ibj"/>
+        <segue reference="YTd-mW-fzd"/>
     </inferredMetricsTieBreakers>
 </document>
