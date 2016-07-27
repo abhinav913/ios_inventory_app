@@ -23,6 +23,7 @@
 		FD91F14D1D35AF8200258771 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD91F1451D35AF8200258771 /* Info.plist */; };
 		FD91F14E1D35AF8200258771 /* ItemCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91F1461D35AF8200258771 /* ItemCategoryTableViewController.swift */; };
 		FD91F14F1D35AF8200258771 /* ItemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91F1471D35AF8200258771 /* ItemObject.swift */; };
+		FD9CBA1B1D406EF3005AF3EB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9CBA1A1D406EF3005AF3EB /* SignInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		FD91F1451D35AF8200258771 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD91F1461D35AF8200258771 /* ItemCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCategoryTableViewController.swift; sourceTree = "<group>"; };
 		FD91F1471D35AF8200258771 /* ItemObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemObject.swift; sourceTree = "<group>"; };
+		FD9CBA1A1D406EF3005AF3EB /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 		2609937E1D2F14D500605097 /* ios_Inventory */ = {
 			isa = PBXGroup;
 			children = (
+				FD9CBA1A1D406EF3005AF3EB /* SignInViewController.swift */,
 				FD65EA081D35BE5C00F55C01 /* GoogleService-Info.plist */,
 				FD91F1411D35AF8200258771 /* AppDelegate.swift */,
 				FD91F1421D35AF8200258771 /* Assets.xcassets */,
@@ -372,6 +375,7 @@
 				FD91F14C1D35AF8200258771 /* HomeViewController.swift in Sources */,
 				FD7BFE5B1D3DB21C00E9090C /* User.swift in Sources */,
 				260993841D2F14D500605097 /* RecentItemViewController.swift in Sources */,
+				FD9CBA1B1D406EF3005AF3EB /* SignInViewController.swift in Sources */,
 				26F4934F1D3AE906004633A6 /* AddItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
