@@ -97,6 +97,12 @@ class AddItemViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         return false
     }
     
+    func roundToPlaces(var value:Double, places:Int) -> Double {
+        value += 0.000001
+        let divisor = pow(10.00, Double(places))
+        return round(value * divisor) / divisor
+    }
+    
     @IBAction func addItemButton(sender: AnyObject) {
         if itemPrice.text != "" && itemName.text != "" && categoryPicker.text != "" {
             if nameCheck(itemName.text!) {
@@ -107,10 +113,12 @@ class AddItemViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 }))
                 self.presentViewController(alert, animated: true, completion: nil)
             } else {
-                let newItem = Item(name: itemName.text!, price: Double(itemPrice.text!)!, category: categoryPicker.text!)
+                if itemNotes == "Add Notes Here..." {
+                    itemNotes.text = ""
+                }
+                let newItem = Item(name: itemName.text!, price: roundToPlaces(Double(itemPrice.text!)!, places: 2), category: categoryPicker.text!, notes: itemNotes.text, quantity: 1)
                 let itemRef = self.dbRef.child(newItem.name)
                 itemRef.setValue(newItem.toAnyObject())
-                //itemArray.append(Item(name: itemName.text!, price: 0, category: categoryPicker.text!))
                 let alert = UIAlertController(title: "Item Added", message: "", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:  {
                     [unowned self] (action) -> Void in

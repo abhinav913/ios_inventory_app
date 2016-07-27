@@ -102,8 +102,9 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
 
     }
     
-    func roundToPlaces(value:Double, places:Int) -> Double {
-        let divisor = pow(10.0, Double(places))
+    func roundToPlaces(var value:Double, places:Int) -> Double {
+        value += 0.000001
+        let divisor = pow(10.00, Double(places))
         return round(value * divisor) / divisor
     }
     
@@ -112,9 +113,9 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
         if (searchController.active && searchController.searchBar.text != "") {
             var item:Item
             item = filterItemArray[indexPath.row]
-            var price = item.price + 0.000001
-            price = roundToPlaces(price, places: 2)
-            let alert = UIAlertController(title: item.name, message: "Price: $\(price)\nQuantity: \nNotes: ", preferredStyle: UIAlertControllerStyle.Alert)
+            let price = roundToPlaces(item.price, places: 3)
+            print(price)
+            let alert = UIAlertController(title: item.name, message: "Price: $\(price)\nQuantity: \(item.quantity)\nNotes: \(item.notes)", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
@@ -167,14 +168,11 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
                 itemVC.categoryTitle = segueList[(homeTableView.indexPathForSelectedRow?.row)!]
                 itemVC.categoryItems = filterCategoryItems(itemVC.categoryItems, category: itemVC.categoryTitle)
                 itemVC.allItems = itemArray
-                print("done")
-                print(itemVC.allItems)
             }
         } else if segue.identifier == "addItem" {
             let addVC = segue.destinationViewController as! AddItemViewController
             addVC.itemArray = itemArray
             addVC.allItems = itemArray
-            print(addVC.allItems)
         }
     }
 }
