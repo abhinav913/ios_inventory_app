@@ -33,9 +33,9 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         dbRef = FIRDatabase.database().reference().child("inventory-items")
-        let itemOne = Item(name: "Bacon", price: 2.00, category: "Groceries & Food")
-        let itemRef = self.dbRef.child("Bacon".lowercaseString)
-        itemRef.setValue(itemOne.toAnyObject())
+        //let itemOne = Item(name: "Bacon", price: 2.00, category: "Groceries & Food")
+        //let itemRef = self.dbRef.child("Bacon".lowercaseString)
+        //itemRef.setValue(itemOne.toAnyObject())
         
         self.searchController = UISearchController(searchResultsController: nil)
         self.searchController.searchBar.sizeToFit()
@@ -43,13 +43,22 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
         definesPresentationContext = true
         self.searchController.searchResultsUpdater = self
         self.searchController.dimsBackgroundDuringPresentation = false
+        startObservingDB()
         self.homeTableView.reloadData()
         
     }
     
-
-    
-
+    func startObservingDB() {
+        dbRef.observeEventType(.Value, withBlock: {(snapshot:FIRDataSnapshot) in
+            for item in snapshot.children {
+                let itemObject = Item(snapshot:item as! FIRDataSnapshot)
+                self.itemArray.append(itemObject)
+            }
+            self.homeTableView.reloadData()
+            }) {(error:NSError) in
+                print(error.description)
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -93,8 +102,9 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
 
     }
     
-    func roundToPlaces(value:Double, places:Int) -> Double {
-        let divisor = pow(10.0, Double(places))
+    func roundToPlaces(var value:Double, places:Int) -> Double {
+        value += 0.000001
+        let divisor = pow(10.00, Double(places))
         return round(value * divisor) / divisor
     }
     
@@ -103,8 +113,9 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
         if (searchController.active && searchController.searchBar.text != "") {
             var item:Item
             item = filterItemArray[indexPath.row]
-            let price = roundToPlaces(item.price, places: 2)
-            let alert = UIAlertController(title: item.name, message: "Price: $\(price)\nQuantity: \nNotes: ", preferredStyle: UIAlertControllerStyle.Alert)
+            let price = roundToPlaces(item.price, places: 3)
+            print(price)
+            let alert = UIAlertController(title: item.name, message: "Price: $\(price)\nQuantity: \(item.quantity)\nNotes: \(item.notes)", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
@@ -140,6 +151,15 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
         return destination
     }
     
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if identifier == "Category" {
+            if (searchController.active && searchController.searchBar.text != "")  {
+                return false
+            }
+        }
+        return true
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "Category" {
             let itemVC = segue.destinationViewController as! ItemCategoryTableViewController
@@ -147,10 +167,12 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
             } else if segue.identifier == "Category" {
                 itemVC.categoryTitle = segueList[(homeTableView.indexPathForSelectedRow?.row)!]
                 itemVC.categoryItems = filterCategoryItems(itemVC.categoryItems, category: itemVC.categoryTitle)
+                itemVC.allItems = itemArray
             }
         } else if segue.identifier == "addItem" {
             let addVC = segue.destinationViewController as! AddItemViewController
             addVC.itemArray = itemArray
+            addVC.allItems = itemArray
         }
     }
 }

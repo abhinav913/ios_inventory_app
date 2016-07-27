@@ -18,6 +18,7 @@ class ItemCategoryTableViewController: UITableViewController {
     var categoryTitle: String!
     var categoryItems = [Item]()
     var filterItems:[Item] = []
+    var allItems:[Item] = []
     
     var dbRef:FIRDatabaseReference!
 
@@ -35,9 +36,6 @@ class ItemCategoryTableViewController: UITableViewController {
         definesPresentationContext = true
         self.searchController.dimsBackgroundDuringPresentation = false
         self.itemTableView.reloadData()
-
-        
-        print(categoryItems)
     }
     
     func startObservingDB() {
@@ -94,26 +92,26 @@ class ItemCategoryTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if (searchController.active && searchController.searchBar.text != "") {
-            showAlert(self.filterItems[indexPath.row].name, price: self.categoryItems[indexPath.row].price)
+            showAlert(self.filterItems[indexPath.row])
         } else {
-            showAlert(self.categoryItems[indexPath.row].name, price: self.categoryItems[indexPath.row].price)
+            showAlert(self.categoryItems[indexPath.row])
         }
         self.itemTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    func roundToPlaces(value:Double, places:Int) -> Double {
-        let divisor = pow(10.00, Double(places))
-        return round(value * divisor) / divisor
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            let item = categoryItems[indexPath.row]
+            item.itemRef?.removeValue()
+        }
     }
     
-    func showAlert( item: String, var price: Double) {
-        price = roundToPlaces(price, places: 2)
-        let alert = UIAlertController(title: item, message: "Price: $\(price)\nQuantity: \nNotes: ", preferredStyle: UIAlertControllerStyle.Alert)
+    func showAlert(item: Item) {
+        let alert = UIAlertController(title: item.name, message: "Price: $\(item.price)\nQuantity: \(item.quantity)\nNotes: \(item.notes)", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Sell", style: UIAlertActionStyle.Destructive, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    
-   
 
     //SEARCH --works    
     func filterContentForSearchText(searchText:String, scope: String="Title") {
@@ -167,6 +165,8 @@ class ItemCategoryTableViewController: UITableViewController {
         if segue.identifier == "addItem" {
             let addVC = segue.destinationViewController as! AddItemViewController
             addVC.categoryName = categoryTitle
+            addVC.itemArray = categoryItems
+            addVC.allItems = allItems
         }
     }
 

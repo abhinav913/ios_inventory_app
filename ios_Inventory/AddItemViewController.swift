@@ -20,6 +20,7 @@ class AddItemViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     var dbRef:FIRDatabaseReference!
     
     var itemArray = [Item]()
+    var allItems = [Item]()
     
     let categoryList:[String] = [
         "Clothing, Shoes & Accesories",
@@ -86,19 +87,45 @@ class AddItemViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         // Dispose of any resources that can be recreated.
     }
     
+    func nameCheck(name: String) -> Bool {
+        print(allItems)
+        for item in self.allItems {
+            if item.name.lowercaseString == name.lowercaseString {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func roundToPlaces(var value:Double, places:Int) -> Double {
+        value += 0.000001
+        let divisor = pow(10.00, Double(places))
+        return round(value * divisor) / divisor
+    }
+    
     @IBAction func addItemButton(sender: AnyObject) {
         if itemPrice.text != "" && itemName.text != "" && categoryPicker.text != "" {
-            //TODO FIX PRICE
-            let newItem = Item(name: itemName.text!, price: Double(itemPrice.text!)!, category: categoryPicker.text!)
-            let itemRef = self.dbRef.child(newItem.name)
-            itemRef.setValue(newItem.toAnyObject())
-            //itemArray.append(Item(name: itemName.text!, price: 0, category: categoryPicker.text!))
-            let alert = UIAlertController(title: "Item Added", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:  {
-                [unowned self] (action) -> Void in
-                self.performSegueWithIdentifier("itemAddedAlert", sender: self)
+            if nameCheck(itemName.text!) {
+                let alert = UIAlertController(title: "Item Exists", message: "Item already exists, do you want to add quantity?", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+                    [unowned self] (action) -> Void in
+                    self.performSegueWithIdentifier("itemAddedAlert", sender: self)
                 }))
-            self.presentViewController(alert, animated: true, completion: nil)
+                self.presentViewController(alert, animated: true, completion: nil)
+            } else {
+                if itemNotes == "Add Notes Here..." {
+                    itemNotes.text = ""
+                }
+                let newItem = Item(name: itemName.text!, price: roundToPlaces(Double(itemPrice.text!)!, places: 2), category: categoryPicker.text!, notes: itemNotes.text, quantity: 1)
+                let itemRef = self.dbRef.child(newItem.name)
+                itemRef.setValue(newItem.toAnyObject())
+                let alert = UIAlertController(title: "Item Added", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:  {
+                    [unowned self] (action) -> Void in
+                    self.performSegueWithIdentifier("itemAddedAlert", sender: self)
+                }))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
         } else {
             let alert = UIAlertController(title: "Error", message: "Please fill in all fields.", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
