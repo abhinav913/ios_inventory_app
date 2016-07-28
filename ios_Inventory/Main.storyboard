@@ -286,7 +286,6 @@
                                 <state key="normal" title="Sign In"/>
                                 <connections>
                                     <action selector="signIn:" destination="KEx-yh-EFR" eventType="touchUpInside" id="PC7-DT-4cU"/>
-                                    <segue destination="49e-Tb-3d3" kind="show" id="HxW-sX-dGj"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UZx-vW-10x" userLabel="emailField">
@@ -300,6 +299,7 @@
                     <connections>
                         <outlet property="emailField" destination="UZx-vW-10x" id="NQk-Hx-bTL"/>
                         <outlet property="passwordField" destination="E9x-QK-XYZ" id="4kM-qn-U87"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="loginSegue" id="beT-cN-IEq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CDi-ou-JAs" userLabel="First Responder" sceneMemberID="firstResponder"/>
