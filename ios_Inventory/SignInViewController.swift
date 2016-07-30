@@ -11,8 +11,6 @@ import FirebaseAuth
 
 class SignInViewController: UIViewController {
 
-    let LOGIN = 1
-    let STAY = 2
     
 
     @IBOutlet weak var emailField: UITextField!
@@ -25,6 +23,16 @@ class SignInViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        FIRAuth.auth()?.addAuthStateDidChangeListener({ (auth:FIRAuth, user:FIRUser?)  in
+            if let user = user {
+                print("Welcome \(user.email)")
+                self.performSegueWithIdentifier("loginSegue", sender: self)
+            }
+        })
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -36,8 +44,18 @@ class SignInViewController: UIViewController {
             if (error != nil) {
                 print(error?.description)
             }
+            else {
+                self.performSegueWithIdentifier("loginSegue", sender: self)
+            }
         })
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "loginSegue" {
+            // Logs In
+        }
+    }
+    
     
 
     /*

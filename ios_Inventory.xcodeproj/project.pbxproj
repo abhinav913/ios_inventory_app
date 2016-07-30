@@ -12,9 +12,9 @@
 		260993A21D2F14D500605097 /* ios_InventoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260993A11D2F14D500605097 /* ios_InventoryUITests.swift */; };
 		26F4934F1D3AE906004633A6 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F4934E1D3AE906004633A6 /* AddItemViewController.swift */; };
 		718FF1175B2D2977C50E8223 /* Pods_ios_Inventory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C094CFC61FDD21A89A82CE /* Pods_ios_Inventory.framework */; };
+		FD60A76B1D4A8F6E007C348B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD60A76A1D4A8F6E007C348B /* Settings.swift */; };
 		FD65EA041D35B61500F55C01 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD65EA021D35B61500F55C01 /* LaunchScreen.storyboard */; };
 		FD65EA051D35B61500F55C01 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD65EA031D35B61500F55C01 /* Main.storyboard */; };
-		FD65EA071D35BA2100F55C01 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD65EA061D35BA2100F55C01 /* LoginViewController.swift */; };
 		FD65EA091D35BE5C00F55C01 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD65EA081D35BE5C00F55C01 /* GoogleService-Info.plist */; };
 		FD7BFE5B1D3DB21C00E9090C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7BFE5A1D3DB21C00E9090C /* User.swift */; };
 		FD91F1491D35AF8200258771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91F1411D35AF8200258771 /* AppDelegate.swift */; };
@@ -56,9 +56,9 @@
 		880BE40548A0940904D7E62C /* Pods-ios_Inventory.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_Inventory.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios_Inventory/Pods-ios_Inventory.debug.xcconfig"; sourceTree = "<group>"; };
 		94E6464AB8B3071BE2A2E933 /* Pods-ios_Inventory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_Inventory.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios_Inventory/Pods-ios_Inventory.release.xcconfig"; sourceTree = "<group>"; };
 		A9C094CFC61FDD21A89A82CE /* Pods_ios_Inventory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_Inventory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD60A76A1D4A8F6E007C348B /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		FD65EA021D35B61500F55C01 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD65EA031D35B61500F55C01 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		FD65EA061D35BA2100F55C01 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FD65EA081D35BE5C00F55C01 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FD7BFE5A1D3DB21C00E9090C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FD91F1411D35AF8200258771 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,11 +130,11 @@
 				FD91F1461D35AF8200258771 /* ItemCategoryTableViewController.swift */,
 				FD65EA021D35B61500F55C01 /* LaunchScreen.storyboard */,
 				FD65EA031D35B61500F55C01 /* Main.storyboard */,
-				FD65EA061D35BA2100F55C01 /* LoginViewController.swift */,
 				FD7BFE5C1D3DB51100E9090C /* Models */,
 				260993831D2F14D500605097 /* RecentItemViewController.swift */,
 				26F4934E1D3AE906004633A6 /* AddItemViewController.swift */,
 				260993881D2F14D500605097 /* Assets.xcassets */,
+				FD60A76A1D4A8F6E007C348B /* Settings.swift */,
 			);
 			path = ios_Inventory;
 			sourceTree = "<group>";
@@ -367,10 +367,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD65EA071D35BA2100F55C01 /* LoginViewController.swift in Sources */,
 				FD91F14E1D35AF8200258771 /* ItemCategoryTableViewController.swift in Sources */,
 				FD91F14F1D35AF8200258771 /* ItemObject.swift in Sources */,
 				FD91F1491D35AF8200258771 /* AppDelegate.swift in Sources */,
+				FD60A76B1D4A8F6E007C348B /* Settings.swift in Sources */,
 				FD91F14C1D35AF8200258771 /* HomeViewController.swift in Sources */,
 				FD7BFE5B1D3DB21C00E9090C /* User.swift in Sources */,
 				260993841D2F14D500605097 /* RecentItemViewController.swift in Sources */,
