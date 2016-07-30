@@ -12,14 +12,14 @@ import FirebaseDatabase
 struct Item {
     let key:String!
     let name:String!
-    let price:Double!
-    let category:String!
-    let notes:String!
-    let quantity:Int!
-    let time:NSDate!
+    var price:Double!
+    var category:String!
+    var notes:String!
+    var quantity:Int!
+    var time:Double!
     let itemRef:FIRDatabaseReference?
     
-    init(name:String, price:Double, category:String, notes:String, quantity:Int, time:NSDate, key:String="") {
+    init(name:String, price:Double, category:String, notes:String, quantity:Int, time:Double, key:String="") {
         self.key = key
         self.name = name
         self.price = price
@@ -64,7 +64,7 @@ struct Item {
             self.quantity = nil
         }
         
-        if let itemTime = snapshot.value!["time"] as? NSDate {
+        if let itemTime = snapshot.value!["time"] as? Double {
             self.time = itemTime
         } else {
             self.time = nil

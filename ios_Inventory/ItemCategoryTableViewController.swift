@@ -19,12 +19,14 @@ class ItemCategoryTableViewController: UITableViewController {
     var categoryItems = [Item]()
     var filterItems:[Item] = []
     var allItems:[Item] = []
+    var itemSelect:Item!
     
     var dbRef:FIRDatabaseReference!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         navigationItem.title = categoryTitle
         dbRef = FIRDatabase.database().reference().child("inventory-items")
         startObservingDB()
@@ -90,6 +92,8 @@ class ItemCategoryTableViewController: UITableViewController {
         return cell
     }
     
+    
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if (searchController.active && searchController.searchBar.text != "") {
             showAlert(self.filterItems[indexPath.row])
@@ -106,10 +110,25 @@ class ItemCategoryTableViewController: UITableViewController {
         }
     }
     
-    func showAlert(item: Item) {
+    func showAlert(var item: Item) {
+        item.itemRef?.updateChildValues([
+            "time": NSDate().timeIntervalSince1970
+        ])
         let alert = UIAlertController(title: item.name, message: "Price: $\(item.price)\nQuantity: \(item.quantity)\nNotes: \(item.notes)", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Sell", style: UIAlertActionStyle.Destructive, handler: nil))
+        alert.addAction(UIAlertAction(title: "Edit", style: UIAlertActionStyle.Default, handler: {
+            (action) -> Void in
+            self.itemSelect = item
+            self.performSegueWithIdentifier("editItem", sender: self)
+        }))
+        alert.addAction(UIAlertAction(title: "Sell Unit", style: UIAlertActionStyle.Destructive, handler: {
+            (action) -> Void in
+            item.itemRef?.updateChildValues(["quantity": (item.quantity - 1)])
+            item.quantity = item.quantity - 1
+            if item.quantity <= 0 {
+                item.itemRef?.removeValue()
+            }
+        }))
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
@@ -167,10 +186,12 @@ class ItemCategoryTableViewController: UITableViewController {
             addVC.categoryName = categoryTitle
             addVC.itemArray = categoryItems
             addVC.allItems = allItems
+        } else if segue.identifier == "editItem" {
+            let editVC = segue.destinationViewController as! AddItemViewController
+            editVC.itemRepeat = self.itemSelect
+            editVC.edit = true
         }
     }
-
-
 }
 
 extension ItemCategoryTableViewController: UISearchResultsUpdating {

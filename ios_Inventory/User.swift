@@ -12,5 +12,8 @@ import FirebaseAuth
 struct User {
     let uid:String
     let email:String
+    let password:String
+    
+    
 
 }

@@ -20,9 +20,9 @@
 		FD91F1491D35AF8200258771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91F1411D35AF8200258771 /* AppDelegate.swift */; };
 		FD91F14A1D35AF8200258771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD91F1421D35AF8200258771 /* Assets.xcassets */; };
 		FD91F14C1D35AF8200258771 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91F1441D35AF8200258771 /* HomeViewController.swift */; };
-		FD91F14D1D35AF8200258771 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD91F1451D35AF8200258771 /* Info.plist */; };
 		FD91F14E1D35AF8200258771 /* ItemCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91F1461D35AF8200258771 /* ItemCategoryTableViewController.swift */; };
 		FD91F14F1D35AF8200258771 /* ItemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91F1471D35AF8200258771 /* ItemObject.swift */; };
+		FD9CBA1B1D406EF3005AF3EB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9CBA1A1D406EF3005AF3EB /* SignInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +67,7 @@
 		FD91F1451D35AF8200258771 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD91F1461D35AF8200258771 /* ItemCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCategoryTableViewController.swift; sourceTree = "<group>"; };
 		FD91F1471D35AF8200258771 /* ItemObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemObject.swift; sourceTree = "<group>"; };
+		FD9CBA1A1D406EF3005AF3EB /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +121,7 @@
 		2609937E1D2F14D500605097 /* ios_Inventory */ = {
 			isa = PBXGroup;
 			children = (
+				FD9CBA1A1D406EF3005AF3EB /* SignInViewController.swift */,
 				FD65EA081D35BE5C00F55C01 /* GoogleService-Info.plist */,
 				FD91F1411D35AF8200258771 /* AppDelegate.swift */,
 				FD91F1421D35AF8200258771 /* Assets.xcassets */,
@@ -252,6 +254,7 @@
 				TargetAttributes = {
 					2609937B1D2F14D500605097 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = YXM4GF954J;
 					};
 					260993911D2F14D500605097 = {
 						CreatedOnToolsVersion = 7.1;
@@ -291,7 +294,6 @@
 				FD65EA041D35B61500F55C01 /* LaunchScreen.storyboard in Resources */,
 				FD91F14A1D35AF8200258771 /* Assets.xcassets in Resources */,
 				FD65EA091D35BE5C00F55C01 /* GoogleService-Info.plist in Resources */,
-				FD91F14D1D35AF8200258771 /* Info.plist in Resources */,
 				FD65EA051D35B61500F55C01 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,6 +374,7 @@
 				FD91F14C1D35AF8200258771 /* HomeViewController.swift in Sources */,
 				FD7BFE5B1D3DB21C00E9090C /* User.swift in Sources */,
 				260993841D2F14D500605097 /* RecentItemViewController.swift in Sources */,
+				FD9CBA1B1D406EF3005AF3EB /* SignInViewController.swift in Sources */,
 				26F4934F1D3AE906004633A6 /* AddItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,10 +500,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ios_Inventory/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "abhinav.ios-Inventory";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ios_Inventory/ios_Inventory-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -512,10 +518,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ios_Inventory/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "abhinav.ios-Inventory";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ios_Inventory/ios_Inventory-Bridging-Header.h";
 			};
 			name = Release;
