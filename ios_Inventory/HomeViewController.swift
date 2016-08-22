@@ -14,6 +14,7 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
     @IBOutlet weak var homeTableView: UITableView!
     var dbRef:FIRDatabaseReference!
     
+    var itemSelect:Item!
     var searchController: UISearchController!
     var segueName = "start"
     var itemSearchResults: String?
@@ -32,6 +33,7 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         dbRef = FIRDatabase.database().reference().child("inventory-items")
         //let itemOne = Item(name: "Bacon", price: 2.00, category: "Groceries & Food")
         //let itemRef = self.dbRef.child("Bacon".lowercaseString)
@@ -50,10 +52,12 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
     
     func startObservingDB() {
         dbRef.observeEventType(.Value, withBlock: {(snapshot:FIRDataSnapshot) in
+            var newItems = [Item]()
             for item in snapshot.children {
                 let itemObject = Item(snapshot:item as! FIRDataSnapshot)
-                self.itemArray.append(itemObject)
+                newItems.append(itemObject)
             }
+            self.itemArray = newItems
             self.homeTableView.reloadData()
             }) {(error:NSError) in
                 print(error.description)
@@ -65,7 +69,7 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
         // Dispose of any resources that can be recreated.
     }
 
-    let segueList:[String] = [
+    let categoryList:[String] = [
         "Clothing, Shoes & Accesories",
         "Home & Garden",
         "Electronics & Office",
@@ -73,6 +77,16 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
         "Sports, Fitness & Outdoors",
         "Beauty & Health",
         "Groceries & Food"
+    ]
+    
+    let categoryImageName:[String] = [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
     ]
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -108,16 +122,34 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
         return round(value * divisor) / divisor
     }
     
+    func showAlert(var item: Item) {
+        item.itemRef?.updateChildValues([
+            "time": NSDate().timeIntervalSince1970
+            ])
+        let alert = UIAlertController(title: item.name, message: "Price: $\(item.price)\nQuantity: \(item.quantity)\nNotes: \(item.notes)", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Edit", style: UIAlertActionStyle.Default, handler: {
+            (action) -> Void in
+            self.itemSelect = item
+            self.performSegueWithIdentifier("editItem", sender: self)
+        }))
+        alert.addAction(UIAlertAction(title: "Sell Unit", style: UIAlertActionStyle.Destructive, handler: {
+            (action) -> Void in
+            item.itemRef?.updateChildValues(["quantity": (item.quantity - 1)])
+            item.quantity = item.quantity - 1
+            if item.quantity <= 0 {
+                item.itemRef?.removeValue()
+            }
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         homeTableView.deselectRowAtIndexPath(indexPath, animated: true)
         if (searchController.active && searchController.searchBar.text != "") {
             var item:Item
             item = filterItemArray[indexPath.row]
-            let price = roundToPlaces(item.price, places: 3)
-            print(price)
-            let alert = UIAlertController(title: item.name, message: "Price: $\(price)\nQuantity: \(item.quantity)\nNotes: \(item.notes)", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            showAlert(item)
         }
     }
     
@@ -128,7 +160,7 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
         self.homeTableView.reloadData()
     }
     
-    func filterContentForSearchText(searchText:String, scope: String="Title") {
+    func filterContentForSearchText(searchText:String, scope: String="Title") { 
         self.filterItemArray = self.itemArray.filter({(item: Item) -> Bool in
             let categoryMatch = (scope == "Title")
             let stringMatch = item.name.lowercaseString.containsString(searchText.lowercaseString)
@@ -142,6 +174,7 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
         return true
     }
     
+    //SEGUE
     func filterCategoryItems(var destination: [Item], category: String) -> [Item] {
         for item in itemArray {
             if item.category == category {
@@ -165,7 +198,7 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
             let itemVC = segue.destinationViewController as! ItemCategoryTableViewController
             if (segue.identifier == "Category" && searchController.active && searchController.searchBar.text != "")  {
             } else if segue.identifier == "Category" {
-                itemVC.categoryTitle = segueList[(homeTableView.indexPathForSelectedRow?.row)!]
+                itemVC.categoryTitle = categoryList[(homeTableView.indexPathForSelectedRow?.row)!]
                 itemVC.categoryItems = filterCategoryItems(itemVC.categoryItems, category: itemVC.categoryTitle)
                 itemVC.allItems = itemArray
             }
@@ -173,7 +206,22 @@ class HomeViewController: UIViewController, UISearchResultsUpdating, UITableView
             let addVC = segue.destinationViewController as! AddItemViewController
             addVC.itemArray = itemArray
             addVC.allItems = itemArray
+        } else if segue.identifier == "editItem" {
+            let editVC = segue.destinationViewController as! AddItemViewController
+            editVC.itemRepeat = self.itemSelect
+            editVC.edit = true
         }
     }
 }
 
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}

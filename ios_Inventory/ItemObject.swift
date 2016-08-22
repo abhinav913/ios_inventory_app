@@ -12,19 +12,21 @@ import FirebaseDatabase
 struct Item {
     let key:String!
     let name:String!
-    let price:Double!
-    let category:String!
-    let notes:String!
-    let quantity:Int!
+    var price:Double!
+    var category:String!
+    var notes:String!
+    var quantity:Int!
+    var time:Double!
     let itemRef:FIRDatabaseReference?
     
-    init(name:String, price:Double, category:String, notes:String, quantity:Int, key:String="") {
+    init(name:String, price:Double, category:String, notes:String, quantity:Int, time:Double, key:String="") {
         self.key = key
         self.name = name
         self.price = price
         self.category = category
         self.notes = notes
         self.quantity = quantity
+        self.time = time
         self.itemRef = nil
     }
     
@@ -62,10 +64,16 @@ struct Item {
             self.quantity = nil
         }
         
+        if let itemTime = snapshot.value!["time"] as? Double {
+            self.time = itemTime
+        } else {
+            self.time = nil
+        }
+        
     }
     
     func toAnyObject() -> AnyObject {
-        return ["name":name, "price":price, "category":category, "notes":notes, "quantity":quantity]
+        return ["name":name, "price":price, "category":category, "notes":notes, "quantity":quantity, "time":time]
     }
 
 }
